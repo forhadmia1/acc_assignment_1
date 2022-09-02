@@ -2,7 +2,11 @@ const fs = require('fs')
 
 
 module.exports.getRandomUser = (req, res) => {
-    res.send('hello random user')
+    const data = fs.readFileSync('user.json');
+    const parsedUser = JSON.parse(data)
+    const randomNum = Math.ceil(Math.random() * parsedUser.length)
+    const result = parsedUser.find(user => user.id === randomNum)
+    res.send(result)
 }
 
 
