@@ -54,5 +54,15 @@ module.exports.updateBulkUser = (req, res) => {
 
 
 module.exports.deleteUser = (req, res) => {
-    res.send('hello delete a user')
+    const id = req.params.id;
+    const users = fs.readFileSync('user.json');
+    const parsedUser = JSON.parse(users)
+    const rest = parsedUser.filter(user => user.id != id)
+    fs.writeFile('user.json', JSON.stringify(rest), (err) => {
+        if (err) {
+            res.send('error occurd')
+        }
+        res.send('successfully delete data')
+    })
+
 }

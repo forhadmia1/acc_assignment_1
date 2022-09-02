@@ -12,7 +12,7 @@ router.patch('/update/:id', updateAUser)
 
 router.patch('/bulk-update', updateBulkUser)
 
-router.delete('/delete', deleteUser)
+router.delete('/delete/:id', deleteUser)
 
 
 module.exports = router;
