@@ -1,10 +1,16 @@
+const fs = require('fs')
+
+
 module.exports.getRandomUser = (req, res) => {
     res.send('hello random user')
 }
 
 
 module.exports.getAllUser = (req, res) => {
-    res.send('hello all user')
+    const limit = req.query.limit;
+    const data = fs.readFileSync('user.json');
+    const parsedUser = JSON.parse(data)
+    res.send(parsedUser.slice(0, limit))
 }
 
 
