@@ -19,12 +19,32 @@ module.exports.getAllUser = (req, res) => {
 
 
 module.exports.saveAUser = (req, res) => {
-    res.send('hello save user')
+    const data = req.body;
+    const users = fs.readFileSync('user.json');
+    const parsedUser = JSON.parse(users)
+    parsedUser.push(data)
+    fs.writeFile('user.json', JSON.stringify(parsedUser), (err) => {
+        if (err) {
+            res.send('error occurd')
+        }
+        res.send('successfully add data')
+    })
 }
 
 
 module.exports.updateAUser = (req, res) => {
-    res.send('hello update a user')
+    const id = req.params.id;
+    const data = req.body;
+    const users = fs.readFileSync('user.json');
+    const parsedUser = JSON.parse(users)
+    const rest = parsedUser.filter(user => user.id != id)
+    rest.push(data)
+    fs.writeFile('user.json', JSON.stringify(parsedUser), (err) => {
+        if (err) {
+            res.send('error occurd')
+        }
+        res.send('successfully update data')
+    })
 }
 
 

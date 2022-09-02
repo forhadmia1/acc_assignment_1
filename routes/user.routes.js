@@ -8,7 +8,7 @@ router.get('/all', getAllUser)
 
 router.post('/save', saveAUser)
 
-router.patch('/update', updateAUser)
+router.patch('/update/:id', updateAUser)
 
 router.patch('/bulk-update', updateBulkUser)
 
